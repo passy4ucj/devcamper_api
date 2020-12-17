@@ -1,5 +1,8 @@
 import express from 'express'
 import dotenv  from 'dotenv'
+import logger from './middleware/logger.js'
+import morgan from 'morgan'
+
 
 //Route files
 import bootcamps from './routes/bootcampRoutes.js'
@@ -9,6 +12,15 @@ dotenv.config({ path: './config/config.env' })
 
 
 const app = express()
+
+
+// Dev logging middleware
+if(process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
+
+
+app.use(logger)
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps)
