@@ -1,10 +1,10 @@
-const express = require('express')
-const dotenv = require('dotenv')
+import express from 'express'
+import dotenv  from 'dotenv'
 
 //Route files
-const bootcamps = require('./routes/bootcamps')
+import bootcamps from './routes/bootcampRoutes.js'
 
-//Load eenv vars
+//Load env vars
 dotenv.config({ path: './config/config.env' })
 
 
