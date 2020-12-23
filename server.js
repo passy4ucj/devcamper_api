@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv  from 'dotenv'
 import logger from './middleware/logger.js'
 import morgan from 'morgan'
+import errorHandler from './middleware/error.js'
 import colors from 'colors'
 import connectDB from './config/db.js'
 
@@ -33,6 +34,9 @@ if(process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps)
+
+//Use error Middleware
+app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 5000
