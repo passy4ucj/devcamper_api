@@ -1,6 +1,10 @@
 import express from 'express'
-import { getBootcamp, getBootcamps, createBootcamp, updateBootcamp, deleteBootcamp } from '../controllers/bootcampController.js'
+import { getBootcamp, getBootcamps, createBootcamp, updateBootcamp, deleteBootcamp, getBootcampsInRadius } from '../controllers/bootcampController.js'
 const router = express.Router()
+
+
+router.route('/radius/:zipcode/:distance')
+    .get(getBootcampsInRadius)
 
 router.route('/')
     .get(getBootcamps)
