@@ -2,6 +2,11 @@ import express from 'express'
 import { getBootcamp, getBootcamps, createBootcamp, updateBootcamp, deleteBootcamp, getBootcampsInRadius } from '../controllers/bootcampController.js'
 const router = express.Router()
 
+// Include other resource routers
+import courseRouter from './courseRoutes.js'
+
+//Re-route into other resource routers
+router.use('/:bootcampId/courses', courseRouter)
 
 router.route('/radius/:zipcode/:distance')
     .get(getBootcampsInRadius)

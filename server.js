@@ -15,6 +15,7 @@ connectDB()
 
 //Route files
 import bootcamps from './routes/bootcampRoutes.js'
+import courses from './routes/courseRoutes.js'
 
 
 
@@ -34,6 +35,7 @@ if(process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps)
+app.use('/api/v1/courses', courses)
 
 //Use error Middleware
 app.use(errorHandler)
