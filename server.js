@@ -18,6 +18,7 @@ connectDB()
 //Route files
 import bootcamps from './routes/bootcampRoutes.js'
 import courses from './routes/courseRoutes.js'
+import auth from './routes/authRoutes.js'
 
 
 
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps)
 app.use('/api/v1/courses', courses)
+app.use('/api/v1/auth', auth)
 
 //Use error Middleware
 app.use(errorHandler)
