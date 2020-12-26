@@ -33,10 +33,10 @@ const courses = JSON.parse(
 
 // Import into DB
 const importData = async () => {
-    //const bootcamps = await Bootcamp.insertMany(bootcamps)
+   
     try {
         await Bootcamp.create(bootcamps)
-        await Course.create(courses)
+        //await Course.create(courses)
 
         console.log('Data Imported...'.green.inverse)
         process.exit()
