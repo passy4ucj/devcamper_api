@@ -1,5 +1,7 @@
 import express from 'express'
 import dotenv  from 'dotenv'
+import path from 'path'
+import fileupload from 'express-fileupload'
 import logger from './middleware/logger.js'
 import morgan from 'morgan'
 import errorHandler from './middleware/error.js'
@@ -32,6 +34,12 @@ if(process.env.NODE_ENV === 'development') {
 }
 
 
+// File uploading
+app.use(fileupload())
+
+// Set static folder
+const __dirname = path.resolve()
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps)
