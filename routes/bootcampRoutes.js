@@ -1,6 +1,9 @@
 import express from 'express'
+import advancedResults from '../middleware/advancedResults.js'
+import Bootcamp from '../models/Bootcamp.js'
 import { getBootcamp, getBootcamps, bootcampPhotoUpload, createBootcamp, updateBootcamp, deleteBootcamp, getBootcampsInRadius } from '../controllers/bootcampController.js'
 const router = express.Router()
+
 
 // Include other resource routers
 import courseRouter from './courseRoutes.js'
@@ -16,7 +19,7 @@ router.route('/:id/photo')
     .put(bootcampPhotoUpload)
 
 router.route('/')
-    .get(getBootcamps)
+    .get(advancedResults(Bootcamp, 'courses'), getBootcamps)
     .post(createBootcamp)
 
 router.route('/:id')
