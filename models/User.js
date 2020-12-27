@@ -48,6 +48,11 @@ userSchema.methods.getSignedJwtToken = function() {
     })
 }
 
+// Match user entered password to hash password in database
+userSchema.methods.matchPassword = async function(enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password)
+}
+
 const User = mongoose.model('User', userSchema)
 
 export default User
