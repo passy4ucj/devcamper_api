@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv  from 'dotenv'
 import path from 'path'
 import fileupload from 'express-fileupload'
+import cookieParser from 'cookie-parser'
 import logger from './middleware/logger.js'
 import morgan from 'morgan'
 import errorHandler from './middleware/error.js'
@@ -27,6 +28,9 @@ const app = express()
 
 // Body Parser
 app.use(express.json())
+
+// Cookie Parser
+app.use(cookieParser())
 
 
 // Dev logging middleware
