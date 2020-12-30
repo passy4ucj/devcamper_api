@@ -1,7 +1,7 @@
 import express from 'express'
 import advancedResults from '../middleware/advancedResults.js'
 import Review from '../models/Review.js'
-import { addReview, getReview, getReviews } from '../controllers/reviewController.js'
+import { addReview, deleteReview, getReview, getReviews, updateReview } from '../controllers/reviewController.js'
 import { authorize, protect } from '../middleware/auth.js'
 
 const router = express.Router({ mergeParams: true })
@@ -15,8 +15,8 @@ router.route('/')
 
 router.route('/:id')
     .get(getReview)
-    // .put(protect, authorize('publisher', 'admin'), updateCourse)
-    // .delete(protect, authorize('publisher', 'admin'), deleteCourse)
+    .put(protect, authorize('user', 'admin'), updateReview)
+    .delete(protect, authorize('user', 'admin'), deleteReview)
 
 
 
