@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser'
 import mongoSanitize from 'express-mongo-sanitize'
 import helmet from 'helmet'
 import xss from 'xss-clean'
+import hpp from 'hpp'
+import rateLimit from 'express-rate-limit'
+import cors from 'cors'
 import logger from './middleware/logger.js'
 import morgan from 'morgan'
 import errorHandler from './middleware/error.js'
@@ -55,6 +58,19 @@ app.use(helmet())
 
 // Prevent XSS (Cross-SIte Scripting) attacks
 app.use(xss())
+
+// Rate Limiting
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 Mins
+    max: 100
+})
+app.use(limiter)
+
+// Prevent Http param pollution
+app.use(hpp())
+
+// Enable cors
+app.use(cors())
 
 // Set static folder
 const __dirname = path.resolve()
