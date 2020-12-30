@@ -4,6 +4,8 @@ import path from 'path'
 import fileupload from 'express-fileupload'
 import cookieParser from 'cookie-parser'
 import mongoSanitize from 'express-mongo-sanitize'
+import helmet from 'helmet'
+import xss from 'xss-clean'
 import logger from './middleware/logger.js'
 import morgan from 'morgan'
 import errorHandler from './middleware/error.js'
@@ -47,6 +49,12 @@ app.use(fileupload())
 
 // Sanitize Data
 app.use(mongoSanitize())
+
+// Set security headers
+app.use(helmet())
+
+// Prevent XSS (Cross-SIte Scripting) attacks
+app.use(xss())
 
 // Set static folder
 const __dirname = path.resolve()
