@@ -11,9 +11,11 @@ const router = express.Router()
 
 // Include other resource routers
 import courseRouter from './courseRoutes.js'
+import reviewRouter from './reviewRoutes.js'
 
 //Re-route into other resource routers
 router.use('/:bootcampId/courses', courseRouter)
+router.use('/:bootcampId/reviews', reviewRouter)
 
 
 router.route('/radius/:zipcode/:distance')
