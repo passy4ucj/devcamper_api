@@ -3,6 +3,7 @@ import dotenv  from 'dotenv'
 import path from 'path'
 import fileupload from 'express-fileupload'
 import cookieParser from 'cookie-parser'
+import mongoSanitize from 'express-mongo-sanitize'
 import logger from './middleware/logger.js'
 import morgan from 'morgan'
 import errorHandler from './middleware/error.js'
@@ -43,6 +44,9 @@ if(process.env.NODE_ENV === 'development') {
 
 // File uploading
 app.use(fileupload())
+
+// Sanitize Data
+app.use(mongoSanitize())
 
 // Set static folder
 const __dirname = path.resolve()
