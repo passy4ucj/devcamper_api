@@ -1,5 +1,5 @@
 import express from 'express'
-import { forgotPassword, getMe, login, register, resetPassword, updateDetails, updatePassword } from '../controllers/authController.js'
+import { forgotPassword, getMe, login, logout, register, resetPassword, updateDetails, updatePassword } from '../controllers/authController.js'
 import { protect } from '../middleware/auth.js'
 
 const router = express.Router()
@@ -12,6 +12,9 @@ router.route('/login')
 
 router.route('/me')
     .get(protect, getMe)
+
+router.route('/logout')
+    .get(logout)
 
 router.route('/forgotpassword')
     .post(forgotPassword)
